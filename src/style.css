@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green: #3DCD58; 
+}
+
+#submit {
+  transition-duration: 0.4s;
+  background-color: var(--green);
+}
+
+#submit:hover {
+  background-color: #34a549;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../dist/style.css"> 
+    <title>Keyword Assessment Tool</title>
+</head>
+<body class="m-5">
+    <h1 class="text-center mb-4 text-xl font-bold leading-none tracking-tight text-gray-900 dark:text-white">Keyword Assessment Tool</h1>
+    <form class="mt-5">
+        <label class="mr-4 font-medium text-gray-700 dark:text-white">Please select your settings</label>
+        <select id="language" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2">
+          <option value="EN">English</option>
+          <option value="CN">Chinese</option>
+          <option value="KR">Korean</option>
+          <option value="DE">German</option>
+          <option value="ES">Spanish</option>
+          <option value="FR">French</option>
+        </select>
+        
+        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="powersystems">Power Systems</option>
+            <option value="services">Services</option>
+            <option value="utilities">Utilities</option>
+            <option value="e-mobility">E-mobility</option>
+        </select>
+
+        <textarea id="textInput" rows="10" class="mt-5 block p-5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your content here..."></textarea>
+        <input type="button" id="submit" value="Submit" class="mt-4 text-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-7 py-2.5 mr-2 mb-2 mt-2 focus:outline-none">
+        <input type="button" id="clear" value="Clear" class="bg-transparent hover:bg-gray-700 text-gray-700 font-medium text-sm hover:text-white py-2.5 px-7 border border-gray-800 hover:border-transparent rounded rounded-lg">
+    </form>
+
+    <div id="results" class="font-medium text-gray-700">
+    </div>
+
+    <script type="module" src="../src/script.js"></script>
+</body>
+</html>
