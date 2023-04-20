@@ -39,27 +39,24 @@ btnSubmit.addEventListener("click", function(event){
     setParameters()
     let arr = combinedKeywords[languageIndex][categoryIndex]
 
-
-
     if (textBox.value != "") {
         strDocument = textBox.value.trim(); 
     }
     else {
         let p = document.createElement("p")
-        console.log("p")
         p.innerHTML = "Please input something in the textbox."
         document.getElementById("results").append(p)
         return; 
     }
 
-
+    
 
     arr.forEach(function(i) {
         let re
 
-        switch(languageText){
-            case "Chinese":
-            // case "Korean":
+        switch(languageIndex){
+            case 1 :
+            case 2 :
                 re = new RegExp( i, 'gi')
                 break; 
             default:
@@ -72,7 +69,6 @@ btnSubmit.addEventListener("click", function(event){
 
             if(count != null && count > 0) {
                 resultDict[i] = strDocument.match(re).length
-                console.log(i +": " + strDocument.match(re).length)
             }
         }
 
