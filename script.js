@@ -59,9 +59,7 @@ btnCopy.addEventListener("click", function(event) {
     event.preventDefault()
 
     let p = document.createElement("p")
-    p.innerHTML = "Text Copied!"
     document.getElementById("results").prepend(p)
-
     let children = resultsDiv.childNodes;
     let results = children[0].innerText;
     for(let i = 1; i < children.length; i++) {
@@ -69,7 +67,7 @@ btnCopy.addEventListener("click", function(event) {
     }
     // console.log(results)
     navigator.clipboard.writeText(results)
-
+    p.innerHTML = "Text Copied!"
 })  
 
 btnSubmit.addEventListener("click", function(event){
