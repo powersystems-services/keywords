@@ -58,8 +58,6 @@ function getWordCount(text) {
 btnCopy.addEventListener("click", function(event) {
     event.preventDefault()
 
-    let p = document.createElement("p")
-    document.getElementById("results").prepend(p)
     let children = resultsDiv.childNodes;
     let results = children[0].innerText;
     for(let i = 1; i < children.length; i++) {
@@ -67,6 +65,8 @@ btnCopy.addEventListener("click", function(event) {
     }
     // console.log(results)
     navigator.clipboard.writeText(results)
+    let p = document.createElement("p")
+    document.getElementById("results").prepend(p)
     p.innerHTML = "Text Copied!"
 })  
 
@@ -118,7 +118,7 @@ btnSubmit.addEventListener("click", function(event){
     })
 
     let p = document.createElement("p")
-    p.innerText = "--RESULTS--"
+    p.innerText = "--Results on Keywords Used and # of Mentions--"
     document.getElementById('results').append(p)
     //store results in a dict then loop through dict to get the results
 
@@ -139,11 +139,11 @@ btnSubmit.addEventListener("click", function(event){
 
     let wordCount = getWordCount(textBox.value)
 
-    p0.innerText = "---"
+    p0.innerText = "--Summary--"
     p1.innerText = "Total Number of Keywords: " + Object.keys(resultDict).length 
     p2.innerText = "Total Number of Mentions: " + counter
     p3.innerText = "Word Count: " + wordCount   
-    p4.innerText = "Keyword Percentage: " + Number(Math.round(counter/wordCount * 100 + 'e2') + 'e-2') + "%"
+    p4.innerText = "Keyword Density: " + Number(Math.round(counter/wordCount * 100 + 'e1') + 'e-1') + "%"
 
     document.getElementById('results').append(p0)
     document.getElementById('results').append(p1)
