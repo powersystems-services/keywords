@@ -2,10 +2,13 @@ const btnSubmit = document.getElementById('submit');
 const btnClear = document.getElementById('clear');
 const textBox = document.getElementById('textInput');
 let resultsDiv = document.getElementById('results');
+
 let btnCopy = document.getElementById("copyclipboard");
+
 let strDocument
 
 import { EN_Keywords_E_mobility, EN_Keywords_Power_Systems, EN_Keywords_Services, EN_Keywords_Utilities, CN_Keywords_E_mobility, CN_Keywords_Power_Systems, CN_Keywords_Services, CN_Keywords_Utilities, KR_Keywords_E_mobility, KR_Keywords_Power_Systems, KR_Keywords_Services, KR_Keywords_Utilities, DE_Keywords_E_mobility, DE_Keywords_Power_Systems, DE_Keywords_Services, DE_Keywords_Utilities, ES_Keywords_E_mobility, ES_Keywords_Power_Systems, ES_Keywords_Services, ES_Keywords_Utilities, FR_Keywords_E_mobility, FR_Keywords_Power_Systems, FR_Keywords_Services, FR_Keywords_Utilities, PL_Keywords_Power_Systems, PL_Keywords_Services, PL_Keywords_Utilities, PL_Keywords_E_mobility,VN_Keywords_E_mobility,VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities} from "./keywords.js";
+
 
 let languageIndex, languageText, languageValue, categoryIndex, categoryText
 let combinedKeywords = [[EN_Keywords_Power_Systems, EN_Keywords_Services , EN_Keywords_Utilities, EN_Keywords_E_mobility],[CN_Keywords_Power_Systems, CN_Keywords_Services,CN_Keywords_Utilities, CN_Keywords_E_mobility], [KR_Keywords_Power_Systems, KR_Keywords_Services , KR_Keywords_Utilities, KR_Keywords_E_mobility], [DE_Keywords_Power_Systems, DE_Keywords_Services,DE_Keywords_Utilities, DE_Keywords_E_mobility], [ES_Keywords_Power_Systems,ES_Keywords_Services,ES_Keywords_Utilities, ES_Keywords_E_mobility], [FR_Keywords_Power_Systems, FR_Keywords_Services , FR_Keywords_Utilities, FR_Keywords_E_mobility], [PL_Keywords_Power_Systems, PL_Keywords_Services,PL_Keywords_Utilities, PL_Keywords_E_mobility],[VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities,VN_Keywords_E_mobility]]
@@ -23,6 +26,7 @@ function setParameters() {
     categoryIndex = getCategory.options[getCategory.selectedIndex].index;
     categoryText = getCategory.options[getCategory.selectedIndex].text; 
 }
+
 
 function getWordCount(text) {
     let counter = 0; 
@@ -49,15 +53,16 @@ btnCopy.addEventListener("click", function(event) {
     let p = document.createElement("p")
     document.getElementById("results").prepend(p)
     p.innerHTML = "Text Copied!"
-})
+})  
 
 btnSubmit.addEventListener("click", function(event){
-    event.preventDefault()
     let resultDict = {}
+    event.preventDefault()
     
     while (resultsDiv.hasChildNodes()) {
         resultsDiv.removeChild(resultsDiv.firstChild);
     }
+
 
     setParameters()
     let arr = combinedKeywords[languageIndex][categoryIndex]
@@ -73,6 +78,7 @@ btnSubmit.addEventListener("click", function(event){
         return; 
     }
 
+
     arr.forEach(function(i) {
         let re
         switch(languageValue){
@@ -81,19 +87,29 @@ btnSubmit.addEventListener("click", function(event){
                 re = new RegExp(i, 'gi');
                 break; 
             case "VN":
+                // re = new RegExp("(?:[\\s,.:;\"']|^)" + i + "(?=[\\s,.:;\"']|$)", "gui");
+                // re = new RegExp("(?:^|\\s)" + i,'gi');
+                // re = new RegExp('(?<=[\\s,.:;"\']|^)' + i + '(?=[\\s,.:;"\']|$)', 'gi');
+                console.log(categoryText)
+                console.log(categoryIndex)
                 re = new RegExp('(?<=[\\s,.:;"\']|^)' + i + '(?=[\\s,.:;"\']|$)', 'gi');
-                break;
+                console.log(re)
             default:
-                re = new RegExp('\\b' + i + '\\b','gi');
-                break;      
+                re = new RegExp('\\b' + i + '\\b','gi');        
         }
 
-        if(strDocument.match(re)) {
+        if(re.test(strDocument)) {
+            console.log('true')
             let count = strDocument.match(re).length;   
+            console.log("im so confused")
             if(count != null && count > 0) {
                 resultDict[i] = strDocument.match(re).length
             }
         }
+        else {
+            console.log('false')
+        }
+
     })
 
     let p = document.createElement("p")
@@ -147,13 +163,5 @@ window.addEventListener("keydown", function(event) {
 })
 
 
-// const re = new RegExp('(?<=[\\s,.:;"\']|^)' + "công tắc kỹ thuật số" + '(?=[\\s,.:;"\']|$)', 'gi');
 
-// let strTest = "công tắc kỹ thuật số điều khiển vùng"
 
-// strTest = strTest.trim()
-
-// console.log(re)
-// console.log(re.test(strTest))
-// console.log(strTest.match(re))
-// console.log(strTest.match(re).length)
