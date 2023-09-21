@@ -5,12 +5,12 @@ let resultsDiv = document.getElementById('results');
 let btnCopy = document.getElementById("copyclipboard");
 let strDocument
 
-import { EN_Keywords_E_mobility, EN_Keywords_Power_Systems, EN_Keywords_Services, EN_Keywords_Utilities, CN_Keywords_E_mobility, CN_Keywords_Power_Systems, CN_Keywords_Services, CN_Keywords_Utilities, KR_Keywords_E_mobility, KR_Keywords_Power_Systems, KR_Keywords_Services, KR_Keywords_Utilities, DE_Keywords_E_mobility, DE_Keywords_Power_Systems, DE_Keywords_Services, DE_Keywords_Utilities, ES_Keywords_E_mobility, ES_Keywords_Power_Systems, ES_Keywords_Services, ES_Keywords_Utilities, FR_Keywords_E_mobility, FR_Keywords_Power_Systems, FR_Keywords_Services, FR_Keywords_Utilities, PL_Keywords_Power_Systems, PL_Keywords_Services, PL_Keywords_Utilities, PL_Keywords_E_mobility,VN_Keywords_E_mobility,VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities} from "./keywords.js";
+import { EN_Keywords_E_mobility, EN_Keywords_Power_Systems, EN_Keywords_Services, EN_Keywords_Utilities, CN_Keywords_E_mobility, CN_Keywords_Power_Systems, CN_Keywords_Services, CN_Keywords_Utilities, KR_Keywords_E_mobility, KR_Keywords_Power_Systems, KR_Keywords_Services, KR_Keywords_Utilities, DE_Keywords_E_mobility, DE_Keywords_Power_Systems, DE_Keywords_Services, DE_Keywords_Utilities, ES_Keywords_E_mobility, ES_Keywords_Power_Systems, ES_Keywords_Services, ES_Keywords_Utilities, FR_Keywords_E_mobility, FR_Keywords_Power_Systems, FR_Keywords_Services, FR_Keywords_Utilities, PL_Keywords_Power_Systems, PL_Keywords_Services, PL_Keywords_Utilities, PL_Keywords_E_mobility,VN_Keywords_E_mobility,VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities, PT_Keywords_Power_Systems,PT_Keywords_Services,PT_Keywords_E_mobility, PT_Keywords_Utilities} from "./keywords.js";
 
 let languageIndex, languageText, languageValue, categoryIndex, categoryText
-let combinedKeywords = [[EN_Keywords_Power_Systems, EN_Keywords_Services , EN_Keywords_Utilities, EN_Keywords_E_mobility],[CN_Keywords_Power_Systems, CN_Keywords_Services,CN_Keywords_Utilities, CN_Keywords_E_mobility], [KR_Keywords_Power_Systems, KR_Keywords_Services , KR_Keywords_Utilities, KR_Keywords_E_mobility], [DE_Keywords_Power_Systems, DE_Keywords_Services,DE_Keywords_Utilities, DE_Keywords_E_mobility], [ES_Keywords_Power_Systems,ES_Keywords_Services,ES_Keywords_Utilities, ES_Keywords_E_mobility], [FR_Keywords_Power_Systems, FR_Keywords_Services , FR_Keywords_Utilities, FR_Keywords_E_mobility], [PL_Keywords_Power_Systems, PL_Keywords_Services,PL_Keywords_Utilities, PL_Keywords_E_mobility],[VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities,VN_Keywords_E_mobility]]
+let combinedKeywords = [[EN_Keywords_Power_Systems, EN_Keywords_Services , EN_Keywords_Utilities, EN_Keywords_E_mobility],[CN_Keywords_Power_Systems, CN_Keywords_Services,CN_Keywords_Utilities, CN_Keywords_E_mobility], [KR_Keywords_Power_Systems, KR_Keywords_Services , KR_Keywords_Utilities, KR_Keywords_E_mobility], [DE_Keywords_Power_Systems, DE_Keywords_Services,DE_Keywords_Utilities, DE_Keywords_E_mobility], [ES_Keywords_Power_Systems,ES_Keywords_Services,ES_Keywords_Utilities, ES_Keywords_E_mobility], [FR_Keywords_Power_Systems, FR_Keywords_Services , FR_Keywords_Utilities, FR_Keywords_E_mobility], [PL_Keywords_Power_Systems, PL_Keywords_Services,PL_Keywords_Utilities, PL_Keywords_E_mobility],[VN_Keywords_Power_Systems,VN_Keywords_Services,VN_Keywords_Utilities,VN_Keywords_E_mobility],[PT_Keywords_Power_Systems,PT_Keywords_Services,PT_Keywords_Utilities,PT_Keywords_E_mobility]]
 
-//EN, CN, KR, DE, ES, FR, PL
+//EN, CN, KR, DE, ES, FR, PL, PT
 //Power Systems, Services, Utilities, E-mobility 
 
 function setParameters() {
@@ -61,6 +61,9 @@ btnSubmit.addEventListener("click", function(event){
 
     setParameters()
     let arr = combinedKeywords[languageIndex][categoryIndex]
+    console.log(languageIndex)
+    console.log(categoryIndex)
+    console.log(arr)
 
     if (textBox.value != "") {
         strDocument = textBox.value.trim();
@@ -80,12 +83,12 @@ btnSubmit.addEventListener("click", function(event){
             case "KR" :
                 re = new RegExp(i, 'gi');
                 break; 
-            case "VN":
+            default: //case "VN":
                 re = new RegExp('(?<=[\\s,.:;"\']|^)' + i + '(?=[\\s,.:;"\']|$)', 'gi');
                 break;
-            default:
-                re = new RegExp('\\b' + i + '\\b','gi');
-                break;      
+            // default:
+            //     re = new RegExp('\\b' + i + '\\b','gi');
+            //     break;      
         }
 
         if(strDocument.match(re)) {
